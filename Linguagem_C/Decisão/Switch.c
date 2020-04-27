@@ -16,19 +16,19 @@ int main()
 
 	switch (op){
 		case '+':
-		printf("Resultado = %.2f\n", a+b);
-		break;
+			printf("Resultado = %.2f\n", a+b);
+			break;
 		case '-':
-		printf("Resutado = %.2f\n", a-b);
-		break;
+			printf("Resutado = %.2f\n", a-b);
+			break;
 		case '*':
-		printf("Resutado = %.2f\n", a*b);
-		break;
+			printf("Resutado = %.2f\n", a*b);
+			break;
 		case '/':
-		printf("Resutado = %.2f\n", a/b);
-		break;
+			printf("Resutado = %.2f\n", a/b);
+			break;
 		default:
-		printf("operacao Invalida\n");
+			printf("operacao Invalida!\n");
 		return 0;
 	}
 	return 0;
