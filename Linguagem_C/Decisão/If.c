@@ -9,8 +9,8 @@
 
 int main()
 {
-	int e;
-	scanf("%d", &e);
+	int i;
+	scanf("%d", &i);
 	
 	if (e >= 18) {
 		printf("Maior de idade");
