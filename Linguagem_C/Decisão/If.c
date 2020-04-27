@@ -11,6 +11,7 @@ int main()
 {
 	int e;
 	scanf("%d", &e);
+	
 	if (e >= 18) {
 		printf("Maior de idade");
 	}
