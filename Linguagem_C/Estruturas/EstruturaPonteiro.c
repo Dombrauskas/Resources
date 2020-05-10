@@ -39,7 +39,7 @@ int main()
     printf("Bairro: ");
     scanf(" %14[^\n]", address.bairro);
 
-    printf("Ponteiro mora em %s %d, %s\n", home.rua, home.num, home.bairro);
+    printf("Ponteiro mora em %s %d, %s\n", phome->rua, phome->num, phome->bairro);
     printf("Voce mora em %s %d, %s\n", address.rua, address.num, address.bairro);
     return 0;
 }
