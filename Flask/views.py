@@ -1,6 +1,6 @@
 from flask import render_template, request, redirect, session, flash, Response, url_for, send_from_directory
 from models import Musica
-from ki import app, db
+from projeto_flask import app, db
 
 
 @app.route("/")
