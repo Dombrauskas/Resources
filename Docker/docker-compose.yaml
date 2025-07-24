@@ -1,0 +1,62 @@
+# Versão do docker-compose
+# Version of docker-compose
+version: "3.9"
+
+# Lista de serviços criada pelo docker
+# Services list docker will create
+services:
+  # Nome do serviço
+  # Service name
+  python:
+    # Imagem base
+    # Base image
+    image: python:3.10-slim
+    # Nome do contêiner
+    # Container name
+    container_name: python:3.10
+    # Rede para comunicação com outros serviços
+    # Network to comunicate with other services
+    networks:
+      - development
+    # Mapeamento de pasta para salvar dados
+    # Folder mapping to persist data
+    volumes:
+      - ./:/app
+    # Indica qual(is) serviço(s) precisam ser criados primeiro
+    # Specifies which service(s) need to be created beforehand
+    depends_on:
+      - "mysql"
+  
+  mysql:
+    # Cria o contêiner a partir do dockerfile
+    # Creates the container from a dockerfile
+    build:
+      # Indica o dockerfile (. se o nome for Dockerfile)
+      # Specifies the dockerfile (. if name is Dockerfile)
+      dockerfile: .
+      # Local onde o arquivo está
+      # Where the file is stored
+      context: .
+    image: meu-mysql
+    container_name: meu-mysql
+    # Mapeamento de portas
+    # Ports mapping
+    ports:
+      - 3306:3306
+    networks:
+      - development
+    volumes:
+      - salva-db:/data/db
+
+# Estabelece uma rede para comunicação do contâineres
+# Stablishes a networks for containers comunication
+networks:
+  # Nome da rede
+  # Network name
+  development:
+    driver: bridge
+
+# Cria uma pasta gerenciada pelo docker para salvar de dados
+# Creates a docker managed folder to persist data
+volumes:
+  salva-db:
