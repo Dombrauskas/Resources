@@ -11,13 +11,13 @@ public class Main {
         int[] vet = new int[5];
         ArrayList<String> al = new ArrayList<>();        
     
-        Test ob;
-        ob = new Test(3);
-        ob = new Test("A");
-        ob = new Test(3.7);
-        ob = new Test(5.0F);
-        ob = new Test(vet);
-        ob = new Test(al);
+        ClasseGenerica ob;
+        ob = new ClasseGenerica(3);
+        ob = new ClasseGenerica("A");
+        ob = new ClasseGenerica(3.7);
+        ob = new ClasseGenerica(5.0F);
+        ob = new ClasseGenerica(vet);
+        ob = new ClasseGenerica(al);
     }
 }
 
@@ -28,7 +28,7 @@ public class Main {
 class ClasseGenerica<Gen> {
     Gen g; 
     
-    Test(Gen t) {
+    ClasseGenerica(Gen t) {
         g = t;
         Tipo();
     }
