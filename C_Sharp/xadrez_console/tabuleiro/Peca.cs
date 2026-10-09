@@ -15,9 +15,29 @@ namespace tabuleiro
             this.QteMovimentos = 0;
         }
         
+        public bool ExisteMovimento()
+        {
+            bool[,] Mat = MovimentoPossivel();
+            
+            for (int i = 0; i < tabuleiro.Linhas; i++)
+            {
+                for (int j = 0; j < tabuleiro.Colunas; j++)
+                {
+                    if (Mat[i, j])
+                        return true;
+                }
+            }
+            return false;
+        }
+        
         public void IncrementarMovimento()
         {
             QteMovimentos++;
+        }
+        
+        public bool PodeMoverParaDestino(Posicao destino)
+        {
+            return MovimentoPossivel()[destino.linha, destino.coluna];
         }
         
         public abstract bool[,] MovimentoPossivel();

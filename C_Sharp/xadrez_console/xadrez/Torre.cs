@@ -67,7 +67,6 @@ namespace xadrez
                 }
                 pos.coluna--;
             }
-            Console.WriteLine("Matriz " + Mat);
             return Mat;
         }
 

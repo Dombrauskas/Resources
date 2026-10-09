@@ -38,7 +38,6 @@ namespace xadrez_console
             }
             Console.WriteLine("  a b c d e f g h");
             Console.BackgroundColor = FundoOriginal;
-            Console.WriteLine(posicoes);
         }
         
         public static void ImprimirPeca(Peca peca)
