@@ -7,12 +7,14 @@ namespace xadrez
         public Tabuleiro Tab { get; private set; }
         private int Turno;
         private Cor JogadorAtual;
+        public bool Terminada { get; private set; }
         
         public PartidaXadrez()
         {
             Tab = new Tabuleiro(8, 8);
             Turno = 1;
             JogadorAtual = Cor.Branco;
+            Terminada = false;
             ColocarPecas();
         }
         
@@ -26,10 +28,9 @@ namespace xadrez
         
         private void ColocarPecas()
         {
-            Tab.ColocarPeca(new Torre(Tab, Cor.Preto), new PosicaoXadrez('a', 0).ParaPosicao());
-            Tab.ColocarPeca(new Torre(Tab, Cor.Preto), new PosicaoXadrez('b', 3).ParaPosicao());
-            Tab.ColocarPeca(new Rei(Tab, Cor.Preto), new PosicaoXadrez('c', 4).ParaPosicao());
-
+            Tab.ColocarPeca(new Torre(Tab, Cor.Preto), new PosicaoXadrez('a', 8).ParaPosicao());
+            Tab.ColocarPeca(new Torre(Tab, Cor.Preto), new PosicaoXadrez('h', 8).ParaPosicao());
+            Tab.ColocarPeca(new Rei(Tab, Cor.Preto), new PosicaoXadrez('e', 8).ParaPosicao());
         }
     }
 }
