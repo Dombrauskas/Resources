@@ -169,11 +169,25 @@ namespace xadrez
         public void RealizaMovimento(Posicao origem, Posicao destino)
         {
             Peca PecaCapturada = ExecutarMovimento(origem, destino);
+            Peca p = Tab.Peca(destino);
             
             if (PartidaEmXeque(JogadorAtual))
             {
                 DesfazMovimento(origem, destino, PecaCapturada);
                 throw new TabuleiroException("O rei ficará em xeque!");
+            }
+            
+            // Promoção
+            if (p is Peao)
+            {
+                if ((p.cor == Cor.Branco && destino.linha == 0) || (p.cor == Cor.Preto && destino.linha == 7))
+                {
+                    p = Tab.RemoverPeca(destino);
+                    PecasJogo.Remove(p);
+                    Peca Rainha = new Rainha(Tab, p.cor);
+                    Tab.ColocarPeca(Rainha, destino);
+                    PecasJogo.Add(Rainha);
+                }
             }
             
             Xeque = PartidaEmXeque(Adversario(JogadorAtual)) ? true : false;
@@ -185,7 +199,6 @@ namespace xadrez
                 MudarVezJogador();
             }
             
-            Peca p = Tab.Peca(destino);
             if (p is Peao && (destino.linha == origem.linha - 2 || destino.linha == origem.linha + 2))
                 EnPassant = p;
         }
