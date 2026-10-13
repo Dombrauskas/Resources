@@ -56,14 +56,14 @@ namespace xadrez
                     if (tabuleiro.PosicaoValida(Esquerda) && ExisteAdversario(Esquerda) 
                         && tabuleiro.Peca(Esquerda) == Partida.EnPassant)
                     {
-                        Mat[Esquerda.linha, Esquerda.coluna] = true;
+                        Mat[Esquerda.linha - 1, Esquerda.coluna] = true;
                     }
                     
                     Posicao Direita = new Posicao(posicao.linha, posicao.coluna + 1);
                     if (tabuleiro.PosicaoValida(Direita) && ExisteAdversario(Direita) 
                         && tabuleiro.Peca(Direita) == Partida.EnPassant)
                     {
-                        Mat[Direita.linha, Direita.coluna] = true;
+                        Mat[Direita.linha - 1, Direita.coluna] = true;
                     }
                 }
             }
@@ -96,14 +96,14 @@ namespace xadrez
                     if (tabuleiro.PosicaoValida(Esquerda) && ExisteAdversario(Esquerda) 
                         && tabuleiro.Peca(Esquerda) == Partida.EnPassant)
                     {
-                        Mat[Esquerda.linha, Esquerda.coluna] = true;
+                        Mat[Esquerda.linha + 1, Esquerda.coluna] = true;
                     }
                     
                     Posicao Direita = new Posicao(posicao.linha, posicao.coluna + 1);
                     if (tabuleiro.PosicaoValida(Direita) && ExisteAdversario(Direita) 
                         && tabuleiro.Peca(Direita) == Partida.EnPassant)
                     {
-                        Mat[Direita.linha, Direita.coluna] = true;
+                        Mat[Direita.linha + 1, Direita.coluna] = true;
                     }
                 }
             }

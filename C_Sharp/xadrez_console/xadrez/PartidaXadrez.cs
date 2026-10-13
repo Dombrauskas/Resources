@@ -49,22 +49,43 @@ namespace xadrez
             }
             Tab.ColocarPeca(p, origem);
             
+            // Jogada Roque Pequeno
             if (p is Rei && destino.coluna == origem.coluna + 2)
             {
                 Posicao OrigemTorre = new Posicao(origem.linha, origem.coluna + 3);
                 Posicao DestinoTorre = new Posicao(origem.linha, origem.coluna + 1);
-                Peca T = Tab.RemoverPeca(DestinoTorre);
+                Peca T = Tab.RemoverPeca(OrigemTorre);
                 T.DecrementarMovimento();
-                Tab.ColocarPeca(T, OrigemTorre);
+                Tab.ColocarPeca(T, DestinoTorre);
             }
-            
+
+            // Jogada Roque Grande
             if (p is Rei && destino.coluna == origem.coluna - 2)
             {
                 Posicao OrigemTorre = new Posicao(origem.linha, origem.coluna - 4);
                 Posicao DestinoTorre = new Posicao(origem.linha, origem.coluna - 1);
-                Peca T = Tab.RemoverPeca(DestinoTorre);
+                Peca T = Tab.RemoverPeca(OrigemTorre);
                 T.DecrementarMovimento();
-                Tab.ColocarPeca(T, OrigemTorre);
+                Tab.ColocarPeca(T, DestinoTorre);
+            }
+            
+            // Jogada En Passant
+            if (p is Peao)
+            {
+                if (origem.coluna != destino.coluna && peca == EnPassant)
+                {
+                    Peca Peao = Tab.RemoverPeca(destino);
+                    Posicao PosicaoPeao;
+                    if (p.cor == Cor.Branco)
+                    {
+                        PosicaoPeao = new Posicao(3, destino.coluna);
+                    }
+                    else
+                    {
+                        PosicaoPeao = new Posicao(4, destino.coluna);
+                    }
+                    Tab.ColocarPeca(Peao, PosicaoPeao);
+                }
             }
         }
         
@@ -90,6 +111,7 @@ namespace xadrez
             if (PecaCapturada != null)
                 PecasCapturadas.Add(PecaCapturada);
             
+            // Jogada Roque Pequeno
             if (p is Rei && destino.coluna == origem.coluna + 2)
             {
                 Posicao OrigemTorre = new Posicao(origem.linha, origem.coluna + 3);
@@ -99,6 +121,7 @@ namespace xadrez
                 Tab.ColocarPeca(T, DestinoTorre);
             }
             
+            // Jogada Roque Grande
             if (p is Rei && destino.coluna == origem.coluna - 2)
             {
                 Posicao OrigemTorre = new Posicao(origem.linha, origem.coluna - 4);
@@ -108,8 +131,28 @@ namespace xadrez
                 Tab.ColocarPeca(T, DestinoTorre);
             }
             
+            // Jogada En Passant
+            if (p is Peao)
+            {
+                if (origem.coluna != destino.coluna && PecaCapturada == null)
+                {
+                    Posicao PosicaoPeao;
+                    if (p.cor == Cor.Branco)
+                    {
+                        PosicaoPeao = new Posicao(destino.linha + 1, destino.coluna);
+                    }
+                    else
+                    {
+                        PosicaoPeao = new Posicao(destino.linha - 1, destino.coluna);
+                    }
+                    PecaCapturada = Tab.RemoverPeca(PosicaoPeao);
+                    PecasCapturadas.Add(PecaCapturada);
+                }
+            }
+            
             return PecaCapturada;
         }
+        
         public bool PartidaEmXeque(Cor cor)
         {
             Peca Rei = CorRei(cor) ?? throw new TabuleiroException($"Não há rei {cor} na partida.");
